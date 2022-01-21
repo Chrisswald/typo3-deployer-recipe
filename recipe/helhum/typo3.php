@@ -111,23 +111,18 @@ task('build', function () {
     invoke('deploy:symlink');
     invoke('cleanup');
 
-})->local()->desc('Build project')->setPrivate();
+})->desc('Build project');
 
 task('transfer',  [
     'deploy:release',
     'rsync:warmup',
     'rsync',
     'deploy:shared',
-])->desc('Transfer code to target hosts')->setPrivate();
+])->desc('Transfer code to target hosts');
 
 task('release', [
     'deploy:symlink',
-])->desc('Release code on target hosts')->setPrivate();
-
-task('rsync')->setPrivate();
-task('rsync:warmup')->setPrivate();
-task('deploy:copy_dirs')->setPrivate();
-task('deploy:clear_paths')->setPrivate();
+])->desc('Release code on target hosts');
 
 add('rsync', [
     'exclude' => [
